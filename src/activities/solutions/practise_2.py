@@ -3,6 +3,14 @@ import pandas as pd
 from pandas import DataFrame
 import matplotlib.pyplot as plt
 
+def useful_columns(csv_file):
+    cols = ['type', 'year', 'country', 'host', 'start', 'end', 'countries', 'events', 'sports',
+            'participants_m', 'participants_f', 'participants']
+
+    df_selected_cols = pd.read_csv(csv_file, usecols=cols)
+
+    return df_selected_cols
+
 def clean_data(df: DataFrame) -> DataFrame:
     """Cleans the data by handling missing values and converting data types."""
     print(df['sports'])
@@ -23,7 +31,10 @@ def clean_data(df: DataFrame) -> DataFrame:
     
     
         
-
+def remove_columns(df: DataFrame, columns_to_remove: list) -> DataFrame:
+    """Removes specified columns from the DataFrame."""
+    df_dropped = df.drop(columns=columns_to_remove)
+    return df_dropped
 
 
 
@@ -32,4 +43,11 @@ if __name__ == "__main__":
 
     csv_file = project_root.joinpath('data', 'paralympics_raw.csv')
     df = pd.read_csv(csv_file)
+    #clean_data(df)
+    df = useful_columns(csv_file)
+    print(df)
     clean_data(df)
+    columns_to_remove = ['host', 'end', 'countries', 'events', 'sports']
+    df = remove_columns(df, columns_to_remove)
+    print(df)
+    print(df.columns)
