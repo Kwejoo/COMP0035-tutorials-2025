@@ -1,8 +1,8 @@
 from pathlib import Path
 import pandas as pd
-from pandas import DataFrame, value_counts
+from pandas import DataFrame
 import matplotlib.pyplot as plt
- 
+
 
 def describe_dataframe(df: DataFrame, title: str = None) -> None:
     """Print a concise description of a pandas DataFrame.
@@ -254,8 +254,3 @@ if __name__ == "__main__":
     print(df1['type'].value_counts())
     print(df1['disabilities_included'].unique())
     print(df1['disabilities_included'].value_counts())
-
-    
-
-
-
