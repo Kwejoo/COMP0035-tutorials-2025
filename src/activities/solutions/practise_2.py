@@ -165,8 +165,5 @@ if __name__ == "__main__":
     df.set_index('type', inplace=True)
     print(df)
 
-    #f = deep_clean(df)
-    #print(df)
-
     filepath = Path(__file__).parent.joinpath('output.csv')
     df.to_csv(filepath)
