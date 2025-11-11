@@ -3,6 +3,12 @@ import pandas as pd
 from pandas import DataFrame
 import matplotlib.pyplot as plt
 
+pd.set_option("display.max_rows", None)
+pd.set_option("display.max_columns", None)
+pd.set_option("display.width", 0)
+pd.set_option("display.max_colwidth", None)
+pd.set_option("display.expand_frame_repr", False)
+
 def useful_columns(csv_file):
     cols = ['type', 'year', 'country', 'host', 'start', 'end', 'countries', 'events', 'sports',
             'participants_m', 'participants_f', 'participants']
@@ -36,6 +42,48 @@ def remove_columns(df: DataFrame, columns_to_remove: list) -> DataFrame:
     df_dropped = df.drop(columns=columns_to_remove)
     return df_dropped
 
+def remove_columns_after(df: DataFrame, columns_to_remove: list) -> DataFrame:
+    columns_to_remove = ['host', 'end', 'countries', 'events', 'sports']
+    df1 = remove_columns(df, columns_to_remove)
+    print(df1)
+    print(df1.columns)
+
+
+def remove_rows_with_missing_values(df: DataFrame) -> DataFrame:
+    """Removes rows with any missing values from the DataFrame."""
+    df_cleaned = df.dropna()
+    return df_cleaned
+
+def clean_types(df):
+    """Clean and normalise the `type` column in-place.
+
+    Actions performed:
+    1. Strip whitespace from all values in the `type` column (fixes occurrences
+       like `'winter '`).
+    2. Locate rows where `type == "Summer"` and change them to lower-case
+       using ``.str.lower()`` (so they become `'summer'`).
+
+    Returns the modified DataFrame (the operation also mutates the input).
+    """
+    if 'type' not in df.columns:
+        print("DataFrame has no 'type' column to clean")
+        return df
+
+    # 1) Strip whitespace from the entire column to remove entries like
+    #    'winter'. This is easier and more reliable than fixing a single
+    #    cell.
+    df['type'] = df['type'].astype(str).str.strip()
+
+    # 2) Locate rows where `type == 'Summer'` (case-sensitive match) and
+    #    normalise them to lowercase using .str.lower()
+    summer_mask = df['type'] == 'Summer'
+    if summer_mask.any():
+        df.loc[summer_mask, 'type'] = df.loc[summer_mask, 'type'].str.lower()
+        print(f"Converted {summer_mask.sum()} 'Summer' row(s) to lowercase")
+
+    # Show the resulting unique values for verification
+    print("type column unique values:", df['type'].unique())
+    return df
 
 
 if __name__ == "__main__":
@@ -43,11 +91,17 @@ if __name__ == "__main__":
 
     csv_file = project_root.joinpath('data', 'paralympics_raw.csv')
     df = pd.read_csv(csv_file)
-    #clean_data(df)
+    # clean_data(df)
     df = useful_columns(csv_file)
     print(df)
     clean_data(df)
-    columns_to_remove = ['host', 'end', 'countries', 'events', 'sports']
-    df = remove_columns(df, columns_to_remove)
+
     print(df)
-    print(df.columns)
+    print(df.isna())
+
+    df = remove_rows_with_missing_values(df)
+    print(df)
+    df = clean_types(df)
+
+    
+
