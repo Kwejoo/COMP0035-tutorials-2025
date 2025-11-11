@@ -124,12 +124,8 @@ def change_types(df: DataFrame) -> DataFrame:
     return df
 
 
-if __name__ == "__main__":
-    project_root = Path(__file__).parent.parent
-
-    csv_file = project_root.joinpath('data', 'paralympics_raw.csv')
-    df = pd.read_csv(csv_file)
-
+def deep_clean(df: DataFrame) -> DataFrame:
+    """Performs deep cleaning of the DataFrame."""
     df = useful_columns(csv_file)
     print(df)
 
@@ -144,3 +140,33 @@ if __name__ == "__main__":
     print("Dtypes:\n", df.dtypes)
     df = change_types(df)
     print("Dtypes after change:\n", df.dtypes)
+    return df
+
+
+def new_columns(df: DataFrame) -> DataFrame:
+    """Adds new columns to the DataFrame."""
+    # Example: add new column 'duration' as diff between 'end' and 'start'
+    duration_values = (df['end'] - df['start']).dt.days.astype('Int64')
+    df.insert(df.columns.get_loc('end') + 1, 'duration', duration_values)
+    return df
+
+
+if __name__ == "__main__":
+    project_root = Path(__file__).parent.parent
+
+    csv_file = project_root.joinpath('data', 'paralympics_raw.csv')
+    df = pd.read_csv(csv_file)
+
+    df = deep_clean(df)
+    print(df)
+
+    df = new_columns(df)
+    print(df)
+    df.set_index('type', inplace=True)
+    print(df)
+
+    #f = deep_clean(df)
+    #print(df)
+
+    filepath = Path(__file__).parent.joinpath('output.csv')
+    df.to_csv(filepath)
