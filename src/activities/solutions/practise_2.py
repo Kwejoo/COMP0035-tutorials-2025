@@ -80,7 +80,7 @@ def clean_types(df):
     print("Before stripping whitespace:\n", df['type'])
     print(df['type'].dtype)
     df['type'] = df['type'].str.strip()
-    
+
     print("After stripping whitespace:\n", df['type'])
 
     # 2) Locate rows where `type == 'Summer'` (case-sensitive match) and
@@ -110,6 +110,17 @@ def change_types(df: DataFrame) -> DataFrame:
 
     for col in columns_to_change:
         df[col] = df[col].astype('int64')
+
+    cols = df.columns
+    print(cols)
+
+    for col in cols:
+        print(f"Dtype of column '{col}': {df[col].dtype}")
+        if col == 'start' or col == 'end':
+            print(f"Converting column '{col}' to datetime")
+            print(df[col].dtype)
+            df[col] = pd.to_datetime(df[col], dayfirst=True)
+            print(df[col].dtype)
     return df
 
 
@@ -133,4 +144,3 @@ if __name__ == "__main__":
     print("Dtypes:\n", df.dtypes)
     df = change_types(df)
     print("Dtypes after change:\n", df.dtypes)
-
