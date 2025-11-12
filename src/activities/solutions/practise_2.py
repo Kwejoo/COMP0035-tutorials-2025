@@ -52,7 +52,7 @@ def clean_data(df: DataFrame) -> DataFrame:
     print(df.iat[1, 3])
     for name in list_columns:
         print(df[name])
-    event_type = "summer"
+    event_type = "summer"  # noqa: F841
 
     df_winter = df.query("type == @event_type")
     print(df_winter)
