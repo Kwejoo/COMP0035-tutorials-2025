@@ -6,7 +6,8 @@ In the Terminal run `autopep8 --in-place --aggressive --aggressive src/activitie
 Copied from autopep8 documentation: https://pypi.org/project/autopep8/
 """
 
-import math, sys
+import math
+import sys
 
 
 def example1():
