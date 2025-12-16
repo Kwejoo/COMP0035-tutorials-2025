@@ -49,7 +49,7 @@ Given the guidance in the introduction, here is a suggested approach for writing
 
 These activities give command line instructions only, but you can use any method.
 
-An example is in [test_playing_cards.py](../../tests/test_playing_cards.py).
+An example is in [test_playing_cards.py](../../tests/playing_cards/test_playing_cards.py).
 
 ## Testing errors and exceptions
 
@@ -122,7 +122,7 @@ def test_add_raises_type_error_on_strings():
 
 ### 1. Run a test
 
-1. Look at the code in [test_playing_cards.py](../../tests/test_playing_cards.py).
+1. Look at the code in [test_playing_cards.py](../../tests/playing_cards/test_playing_cards.py).
 
    It contains:
 
@@ -171,7 +171,7 @@ Run the tests and see if they run.
 
 ## Further practice
 
-If you want to practice further, write tests for some of the paralymics model classes or functions created in earlier
-activities.
+If you want to practice further, write tests for some of the paralymics model classes or functions 
+created in earlier activities (e.g. data prep in week 2, database in week 4, classes in week 5).
 
 [Next activity](9-03-fixtures.md)

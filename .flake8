@@ -1,0 +1,3 @@
+[flake8]
+max-line-length = 100  # Default is 79 (PEP8 standard length)
+max-complexity = 1  # mccabe

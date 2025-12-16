@@ -15,15 +15,17 @@ The right balance depends on your application's needs.
 - Complex queries: Highly normalised databases often require more complex queries to retrieve related data. Tables need
   to be joined together in the queries.
 - Performance overhead: JOIN operations can slow down read-heavy applications, especially with large datasets.
-- Design complexity: Designing a fully normalised schema can be more time-consuming and may require deeper understanding
-  of the data and its relationships.
+- Design complexity: Designing a fully normalised schema can be more time-consuming and may require greater
+  understanding of the data and its relationships.
 
 ## Example using the paralympics database
 
 Two versions of the paralympics database have been created, one that has been normalised and one that has not.
 
-The code in [compare_queries.py](../../src/activities/starter/compare_queries.py) can be run to show the time taken to
-run each query.
+The code in [compare_queries.py](../../src/activities/starter/compare_queries.py) shows two select queries only. Update
+queries should be more efficient in a more highly normalised database.
+
+Using a database that is **not** normalised is **not recommended**, please do not do this in your coursework.
 
 ### Un-normalised database
 

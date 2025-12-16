@@ -45,6 +45,7 @@ def test_deal_hand_return_amount():
     hand = deck_cards.deal_hand(hand_size)
 
     # Assert
+    print(hand)
     assert len(hand) == hand_size
 
 
@@ -95,10 +96,9 @@ def test_select_returns_cards():
     """
     db_path = ":memory:"
     engine = create_cards_db(db_path=db_path)
-    with (Session(engine) as session):
+    with Session(engine) as session:
         statement = select(CardModel)
         result = session.exec(statement)
         cards = result.all()
         assert len(cards) == 52
-
 

@@ -176,6 +176,7 @@ _*Theme: Using Python to work with data*_
 6. [Update data in a database with SQLModel](docs/8_classes_database_2/8-07-update.md)
 7. [Delete data from a database with SQLModel](docs/8_classes_database_2/8-06-delete.md)
 8. [Reminder: code quality still matters!](docs/8_classes_database_2/8-08-quality.md)
+9. [SQLModel queries for the paralympics database](docs/8_classes_database_2/8-09-paralympics-queries.md)
 
 ### Week 9 Unit testing, CI and coverage
 

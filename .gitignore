@@ -671,5 +671,4 @@ cython_debug/
 docs/md_to_pdf
 docs/md_to_pdf/
 docs/future_weeks
-
 .DS_Store
