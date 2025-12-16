@@ -82,7 +82,7 @@ class Athlete:
 ```
 
 Note: The code above include [type annotations](https://typing.python.org/en/latest/spec/annotations.html). Type
-annotations (type hints) are an optional notation in Python that specifies te tyoe of a parameter or function result. It
+annotations (type hints) are an optional notation in Python that specifies te type of a parameter or function result. It
 tells the programme using the function or class what kind of data to pass and what kind of data to expect when a value
 is returned.
 
