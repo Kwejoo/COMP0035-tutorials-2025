@@ -21,5 +21,6 @@ need insert to add data in order to do the testing.
 6. [Update data in a database with SQLModel](8-07-update.md)
 7. [Delete data from a database with SQLModel](8-06-delete.md)
 8. [Reminder: code quality still matters!](8-08-quality.md)
+9. [Paralympics database queries with SQLModel](8-09-comparison.md)
 
 [Next activity](8-01-methods.md)
