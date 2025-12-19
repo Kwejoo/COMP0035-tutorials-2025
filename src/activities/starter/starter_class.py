@@ -1,3 +1,7 @@
+from dataclasses import dataclass
+from datetime import date
+from typing import List
+
 class ParalympicEvent:
     """ Represents a Paralympic event
 
@@ -46,19 +50,35 @@ football = ParalympicEvent("5-a-side Football", "Team Sport", 5)
 sprint.register_athlete("Athlete A")
 sprint.register_athlete("Athlete B")
 
+@dataclass
+class Medal:
+    typ: str
+    design: str
+    dat_design: date
+
+    def colour(self) -> str:
+        """Return the medal type (e.g. 'gold', 'silver', 'bronze')."""
+        return self.typ
 
 class Athlete:
-    def __init__(self, name, team, disability):
+    def __init__(self, name, team, disability, medals: list[Medal]):
         self.name = name
         self.team = team
         self.disability = disability
+        self.medals = medals
     
     def introduce(self):
         print(
             f"My name is {self.name}, I represent {self.team}, and I have a "
-            f"{self.disability} disability."
+            f"{self.disability} disability. Medals include {', '.join([medal.colour() for medal in self.medals])}."
         )
 
-athlete1 = Athlete("Athlete A", "Country X", "visual impairment")
+
+medals1 = Medal('gold', 'Phoenix', date(2025,12,16))
+
+athlete1 = Athlete("Athlete A", "Country X", "visual impairment", [medals1])
+
+
 
 athlete1.introduce()
+
